@@ -8,9 +8,11 @@
 
   <properties>
     <!-- Maven Build Plug-in Versions, set as properties so they can be over ridden as required. -->
+    <org.apache.maven.version>3.5.0</org.apache.maven.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
     <maven-site-plugin.version>3.5</maven-site-plugin.version>
+
     <!-- Maven build Packaging plugins. -->
     <maven-ear-plugin.version>2.9</maven-ear-plugin.version>
     <maven-ejb-plugin.version>2.3</maven-ejb-plugin.version>
@@ -19,6 +21,8 @@
     <maven-war-plugin.version>2.4</maven-war-plugin.version>
     <maven-shade-plugin.version>2.3</maven-shade-plugin.version>
     <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+    <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+    <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
 
     <!-- Maven Code Analysis -->
     <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
@@ -477,4 +481,15 @@
     </profile>
   </profiles>
 
+  <modules>
+    <module>mirror-common</module>
+    <module>mirror-processors-common</module>
+    <module>mirror-maven-common</module>
+    <module>mirror-processors-csv-ingest</module>
+    <module>mirror-processors-download-artifact</module>
+    <module>mirror-processors-generate-artifact</module>
+    <module>mirror-processors-manifest-maven</module>
+    <module>mirror-runnable-jar</module>
+
+  </modules>
 </project>
