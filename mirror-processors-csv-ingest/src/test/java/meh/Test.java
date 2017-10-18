@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.co.crox.mirror.dto.Version;
+import com.github.stevecrox.mirror.dto.Version;
 
 public class Test {
   /** Semantic version patterned pattern matcher. */
