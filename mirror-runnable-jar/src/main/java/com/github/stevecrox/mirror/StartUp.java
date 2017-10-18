@@ -5,8 +5,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ServiceLoader;
+import java.util.Set;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
@@ -14,6 +14,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.main.Main;
 
+import com.github.stevecrox.mirror.dto.maven.MavenDependency;
 import com.github.stevecrox.mirror.exceptons.csv.CSVParserException;
 import com.github.stevecrox.mirror.interfaces.DownloadArtifact;
 import com.github.stevecrox.mirror.interfaces.GenerateArtifact;
@@ -61,17 +62,19 @@ public class StartUp {
         final Main main = new Main();
         final CamelContext context = main.getOrCreateCamelContext();
 
-        final List<String> trustedPackages = getTrusted(GenerateArtifact.class);
+        final Set<String> trustedPackages = getTrusted(GenerateArtifact.class);
         trustedPackages.addAll(getTrusted(PackageArtifact.class));
         trustedPackages.addAll(getTrusted(DownloadArtifact.class));
         trustedPackages.addAll(getTrusted(GenerateArtifact.class));
+        trustedPackages.addAll(getTrusted(PackageArtifact.class));
         // trustedPackages.add(MavenGenerateArtifact.class.getPackage().getName());
         trustedPackages.add(HashSet.class.getPackage().getName());
         trustedPackages.add(URI.class.getPackage().getName());
+        trustedPackages.add(MavenDependency.class.getPackage().getName());
 
         final String brokerURL = "vm://localhost?broker.persistent=false";
         final ActiveMQConnectionFactory activeMQFactory = new ActiveMQConnectionFactory(brokerURL);
-        activeMQFactory.setTrustedPackages(trustedPackages);
+        activeMQFactory.setTrustedPackages(new ArrayList<String>(trustedPackages));
 
         final JmsComponent activemq = ActiveMQComponent.jmsComponent(activeMQFactory);
         activemq.setDeliveryPersistent(false);
@@ -103,8 +106,8 @@ public class StartUp {
      * @throws CSVParserException
      *             thrown if a generate artifact has no packaging type.
      */
-    private static List<String> getTrusted(final Class<?> toRetrieve) throws CSVParserException {
-        final List<String> trustedClasses = new ArrayList<String>();
+    private static Set<String> getTrusted(final Class<?> toRetrieve) throws CSVParserException {
+        final Set<String> trustedClasses = new HashSet<String>();
 
         final ServiceLoader<?> loader = ServiceLoader.load(toRetrieve);
         final Iterator<?> iterator = loader.iterator();
