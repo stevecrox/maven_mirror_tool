@@ -7,14 +7,14 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-               withMaven(jdk: ${env.jdk_tool}, maven: "${env.maven_tool}") {
+               withMaven(jdk: "${env.jdk_tool}", maven: "${env.maven_tool}") {
                    sh "mvn clean"
                }
             }
         }
         stage('test') {
             steps {
-                withMaven(jdk: ${env.jdk_tool}, maven: "${env.maven_tool}") {
+                withMaven(jdk: "${env.jdk_tool}", maven: "${env.maven_tool}") {
                     sh "mvn test"
                 }
             }
