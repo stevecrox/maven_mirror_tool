@@ -346,8 +346,15 @@
                         <skip>${project.analyse.skip.maven-site-plugin}</skip>
                         <skipDeploy>${project.analyse.skip.deploy.maven-site-plugin}</skipDeploy>
                         <validate>false</validate>
-                        <reportPlugins>
-                            <plugin>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>findbugs-maven-plugin</artifactId>
                                 <version>${findbugs-maven-plugin.version}</version>
@@ -387,12 +394,8 @@
                                 <artifactId>maven-surefire-report-plugin</artifactId>
                                 <version>${maven-surefire-report-plugin.version}</version>
                             </plugin>
-                        </reportPlugins>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+        </plugins>
+    </reporting>
 
     <dependencyManagement>
         <dependencies>
