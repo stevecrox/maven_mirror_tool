@@ -7,9 +7,7 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-               withMaven(jdk: "${env.jdk_tool}", maven: "${env.maven_tool}") {
-                   sh "mvn clean"
-               }
+               echo "Minimum possible stage"
             }
         }
         stage('test') {
