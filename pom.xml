@@ -63,7 +63,8 @@
         <project.analyse.fail.on.error.findbugs-maven-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.findbugs-maven-plugin>
 
         <!-- Gives Ability to skip specific plugins and stages. -->
-        <project.analyse.skip>false</project.analyse.skip>
+        <maven.test.skip>false</maven.test.skip>
+        <project.analyse.skip>${maven.test.skip}</project.analyse.skip>
         <maven.analysis.include.tests>false</maven.analysis.include.tests>
         <project.analyse.skip.maven-changelog-plugin>${project.analyse.skip}</project.analyse.skip.maven-changelog-plugin>
         <project.analyse.skip.maven-checkstyle-plugin>${project.analyse.skip}</project.analyse.skip.maven-checkstyle-plugin>
