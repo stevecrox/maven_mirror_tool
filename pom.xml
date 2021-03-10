@@ -63,8 +63,7 @@
         <project.analyse.fail.on.error.findbugs-maven-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.findbugs-maven-plugin>
 
         <!-- Gives Ability to skip specific plugins and stages. -->
-        <maven.test.skip>false</maven.test.skip>
-        <project.analyse.skip>${maven.test.skip}</project.analyse.skip>
+         <project.analyse.skip>false</project.analyse.skip>
         <maven.analysis.include.tests>false</maven.analysis.include.tests>
         <project.analyse.skip.maven-changelog-plugin>${project.analyse.skip}</project.analyse.skip.maven-changelog-plugin>
         <project.analyse.skip.maven-checkstyle-plugin>${project.analyse.skip}</project.analyse.skip.maven-checkstyle-plugin>
@@ -74,9 +73,6 @@
         <project.analyse.skip.maven-project-info-reports-plugin>${project.analyse.skip}</project.analyse.skip.maven-project-info-reports-plugin>
         <project.analyse.skip.maven-surefire-report-plugin>${project.analyse.skip}</project.analyse.skip.maven-surefire-report-plugin>
         <project.analyse.skip.findbugs-maven-plugin>${project.analyse.skip}</project.analyse.skip.findbugs-maven-plugin>
-
-        <project.analyse.skip.maven-surefire-plugin>${project.analyse.skip}</project.analyse.skip.maven-surefire-plugin>
-        <project.analyse.skip.maven-failsafe-plugin>${project.analyse.skip}</project.analyse.skip.maven-failsafe-plugin>
 
         <!-- Dependency Management -->
         <commons-io.version>2.5</commons-io.version>
@@ -180,7 +176,6 @@
                             <include>**/*IntegrationTest*</include>
                             <include>**/*TestIntegration*</include>
                         </includes>
-                        <skip>${project.build.skip.maven-failsafe-plugin}</skip>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -194,7 +189,6 @@
                         <excludes>
                             <exclude>**/*Integration*</exclude>
                         </excludes>
-                        <skip>${project.build.skip.maven-surefire-plugin}</skip>
                     </configuration>
                 </plugin>
                 <!-- ********************************************************************************************* Maven Packaing Plugins ********************************************************************************************* -->
