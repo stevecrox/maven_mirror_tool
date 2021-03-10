@@ -1,6 +1,10 @@
 
 # Created by https://www.gitignore.io/api/maven,eclipse
 
+### Idea ###
+.DS_Store
+.idea
+
 ### Eclipse ###
 
 .metadata
