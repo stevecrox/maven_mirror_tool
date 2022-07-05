@@ -27,6 +27,7 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
 
         <!-- Maven Code Analysis -->
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
@@ -56,7 +57,7 @@
         <project.build.skip.maven-source-plugin>false</project.build.skip.maven-source-plugin>
 
         <!-- Maven Site directory settings. -->
-        <project.build.site.directory>${project.baseDir}/src/site</project.build.site.directory>
+        <project.build.site.directory>${project.basedir}/src/site</project.build.site.directory>
         <!-- Should we fail if an error is detected. -->
         <project.analyse.fail.on.error>false</project.analyse.fail.on.error>
         <project.analyse.fail.on.error.maven-changelog-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.maven-changelog-plugin>
@@ -154,19 +155,7 @@
                         <followSymLinks>true</followSymLinks>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-scm-plugin</artifactId>
-                    <version>${maven-scm-plugin.version}</version>
-                    <configuration>
-                        <connectionType>developerConnection</connectionType>
-                        <connectionUrl>${project.build.connection}</connectionUrl>
-                        <developerConnectionUrl>${project.build.developer.connection}</developerConnectionUrl>
-                        <password>${project.build.password}</password>
-                        <username>${project.build.username}</username>
-                    </configuration>
-                </plugin>
-                <plugin>
+                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
@@ -249,10 +238,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${maven-release-plugin.version}</version>
                     <configuration>
-                        <dryRun>true</dryRun>
-                        <goals>clean install</goals>
-                        <username>${project.build.username}</username>
-                        <password>${project.build.password}</password>
+
                     </configuration>
                 </plugin>
                 <plugin>
@@ -294,9 +280,7 @@
                         <skip>${project.analyse.skip.maven-changelog-plugin}</skip>
                         <outputEncoding>${project.build.targetEncoding}</outputEncoding>
                         <connectionType>developerConnection</connectionType>
-                        <scmUrl>${project.build.developer.connection}</scmUrl>
-                        <password>${project.build.password}</password>
-                        <username>${project.build.username}</username>
+                        <scmUrl>${project.scm.developerConnection}</scmUrl>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -305,7 +289,6 @@
                     <version>${maven-javadoc-plugin.version}</version>
                     <configuration>
                         <skip>${project.analyse.skip.maven-javadoc-plugin}</skip>
-                        <aggregate>true</aggregate>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <serialwarn>true</serialwarn>
                         <source>${project.build.targetVersion}</source>
@@ -317,9 +300,7 @@
                     <version>${maven-jxr-plugin.version}</version>
                     <configuration>
                         <skip>${project.analyse.skip.maven-jxr-plugin}</skip>
-                        <aggregate>true</aggregate>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <inputEncoding>${project.build.sourcetEncoding}</inputEncoding>
+                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
                         <outputEncoding>${project.build.targetEncoding}</outputEncoding>
                     </configuration>
                 </plugin>
@@ -329,10 +310,8 @@
                     <version>${maven-pmd-plugin.version}</version>
                     <configuration>
                         <skip>${project.analyse.skip.maven-pmd-plugin}</skip>
-                        <skipPmdError>${project.analyse.fail.on.error.maven-pmd-plugin}</skipPmdError>
                         <aggregate>true</aggregate>
                         <format>xml</format>
-                        <includeTests>${maven.analysis.pmd.include.tests}</includeTests>
                         <minimumPriority>1</minimumPriority>
                         <outputEncoding>${project.build.targetEncoding}</outputEncoding>
                         <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
@@ -345,9 +324,9 @@
                     <version>${maven-project-info-reports-plugin.version}</version>
                     <configuration>
                         <skip>${project.analyse.skip.maven-project-info-reports-plugin}</skip>
-                        <anonymousConnection>${project.build.connection}</anonymousConnection>
-                        <developerConnection>${project.build.developer.connection}</developerConnection>
-                        <webAccessUrl>${project.build.url}</webAccessUrl>
+                        <anonymousConnection>${project.scm.connection}</anonymousConnection>
+                        <developerConnection>${project.scm.developerConnection}</developerConnection>
+                        <webAccessUrl>${project.scm.url}</webAccessUrl>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -374,8 +353,6 @@
                         <outputEncoding>${project.build.targetEncoding}</outputEncoding>
                         <pomPackagingOnly>false</pomPackagingOnly>
                         <siteDirectory>${project.build.site.directory}</siteDirectory>
-                        <skip>${project.analyse.skip.maven-site-plugin}</skip>
-                        <skipDeploy>${project.analyse.skip.deploy.maven-site-plugin}</skipDeploy>
                         <validate>false</validate>
                     </configuration>
                 </plugin>
@@ -385,11 +362,6 @@
 
     <reporting>
         <plugins>
-            <plugin>
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>findbugs-maven-plugin</artifactId>
-                                <version>${findbugs-maven-plugin.version}</version>
-                            </plugin>
                             <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-changelog-plugin</artifactId>
