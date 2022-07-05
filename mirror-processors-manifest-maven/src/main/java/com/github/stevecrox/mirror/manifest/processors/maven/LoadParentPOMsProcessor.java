@@ -1,21 +1,5 @@
 package com.github.stevecrox.mirror.manifest.processors.maven;
 
-import java.io.EOFException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.Message;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.Parent;
-import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-
 import com.github.stevecrox.mirror.dto.maven.MavenPackaging;
 import com.github.stevecrox.mirror.dto.maven.artifacts.MavenDownloadArtifact;
 import com.github.stevecrox.mirror.dto.maven.artifacts.MavenManifestArtifact;
@@ -28,6 +12,21 @@ import com.github.stevecrox.mirror.manifest.exceptions.maven.MavenManifestRouteE
 import com.github.stevecrox.mirror.manifest.exceptions.maven.MissingManifestException;
 import com.github.stevecrox.mirror.maven.interfaces.ManifestArtifact;
 import com.github.stevecrox.mirror.processors.download.AbstractGenerateURIProcessor;
+import org.apache.camel.Exchange;
+import org.apache.camel.Message;
+import org.apache.commons.io.IOUtils;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.Parent;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.StringUtils;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 
 public final class LoadParentPOMsProcessor extends AbstractGenerateURIProcessor {
 

@@ -12,7 +12,6 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.main.Main;
 
 import com.github.stevecrox.mirror.dto.maven.MavenDependency;
 import com.github.stevecrox.mirror.exceptons.csv.CSVParserException;
@@ -23,6 +22,7 @@ import com.github.stevecrox.mirror.manifest.routes.maven.MavenManifestArtifactRo
 import com.github.stevecrox.mirror.routes.csv.CSVIngestRoute;
 import com.github.stevecrox.mirror.routes.download.DownloadArtifactRoute;
 import com.github.stevecrox.mirror.routes.generate.GenerateArtifactRoute;
+import org.apache.camel.main.Main;
 
 public class StartUp {
 
@@ -60,7 +60,7 @@ public class StartUp {
 
         // create a Main instance
         final Main main = new Main();
-        final CamelContext context = main.getOrCreateCamelContext();
+        final CamelContext context = main.getCamelContext();
 
         final Set<String> trustedPackages = getTrusted(GenerateArtifact.class);
         trustedPackages.addAll(getTrusted(PackageArtifact.class));
@@ -91,7 +91,6 @@ public class StartUp {
         context.addRoutes(new DownloadArtifactRoute(DOWNLOAD_ARTIFACT_QUEUE, output.toURI(), PROCESS_MANIFEST_QUEUE));
         context.addRoutes(new MavenManifestArtifactRoute(PROCESS_MANIFEST_QUEUE, DOWNLOAD_ARTIFACT_QUEUE, output.toURI(), LICENSE_QUEUE));
 
-        context.startAllRoutes();
         context.start();
 
         main.run();
