@@ -100,7 +100,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/stevecrox/maven_mirror_tool.git</connection>
-        <developerConnection>scm:git:git@github.com:stevecrox/maven_mirror_tool.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/stevecrox/maven_mirror_tool.git</developerConnection>
         <url>https://github.com/stevecrox/maven_mirror_tool</url>
     </scm>
 
