@@ -1,5 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.stevecrox</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.0.4</version>
+    </parent>
     <groupId>io.github.stevecrox</groupId>
     <artifactId>mirror-parent</artifactId>
     <version>0.0.2-SNAPSHOT</version>
@@ -7,72 +12,7 @@
     <name>Mirror Import  Tool</name>
 
     <properties>
-        <!-- Maven Build Plug-in Versions, set as properties so they can be over ridden as required. -->
-        <org.apache.maven.version>3.8.6</org.apache.maven.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
-        <maven-site-plugin.version>4.0.0-M2</maven-site-plugin.version>
-
-        <!-- Maven build Packaging plugins. -->
-        <maven-ear-plugin.version>2.9</maven-ear-plugin.version>
-        <maven-ejb-plugin.version>2.3</maven-ejb-plugin.version>
-        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-        <maven-rar-plugin.version>2.3</maven-rar-plugin.version>
-        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-        <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
-        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
-
-        <!-- Maven Code Analysis -->
-        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
-        <maven-checkstyle-plugin.version>2.15</maven-checkstyle-plugin.version>
-        <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
-        <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
-        <maven-jxr-plugin.version>3.2.0</maven-jxr-plugin.version>
-        <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
-        <maven-project-info-reports-plugin.version>3.3.0</maven-project-info-reports-plugin.version>
-        <maven-surefire-report-plugin.version>3.0.0-M7</maven-surefire-report-plugin.version>
-        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-        <javancss-maven-plugin.version>2.1</javancss-maven-plugin.version>
-        <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-
-
-        <!-- Compiler settings, lets you tweak what JDK you are using as needed. -->
-        <project.build.sourceVersion>1.8</project.build.sourceVersion>
-        <project.build.targetVersion>1.8</project.build.targetVersion>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.targetEncoding>ISO-8859-1</project.build.targetEncoding>
-
-        <!-- Gives Ability to skip specific plugins and stages. -->
-        <project.build.skip.maven-site-plugin>false</project.build.skip.maven-site-plugin>
-        <project.build.skip.deploy.maven-site-plugin>false</project.build.skip.deploy.maven-site-plugin>
-        <project.build.skip.maven-source-plugin>false</project.build.skip.maven-source-plugin>
-
-        <!-- Maven Site directory settings. -->
-        <project.build.site.directory>${project.basedir}/src/site</project.build.site.directory>
-        <!-- Should we fail if an error is detected. -->
-        <project.analyse.fail.on.error>false</project.analyse.fail.on.error>
-        <project.analyse.fail.on.error.maven-changelog-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.maven-changelog-plugin>
-        <project.analyse.fail.on.error.maven-checkstyle-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.maven-checkstyle-plugin>
-        <project.analyse.fail.on.error.maven-javadoc-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.maven-javadoc-plugin>
-        <project.analyse.fail.on.error.findbugs-maven-plugin>${project.analyse.fail.on.error}</project.analyse.fail.on.error.findbugs-maven-plugin>
-
-        <!-- Gives Ability to skip specific plugins and stages. -->
-        <project.analyse.skip>false</project.analyse.skip>
-        <maven.analysis.include.tests>false</maven.analysis.include.tests>
-        <project.analyse.skip.maven-changelog-plugin>${project.analyse.skip}</project.analyse.skip.maven-changelog-plugin>
-        <project.analyse.skip.maven-checkstyle-plugin>${project.analyse.skip}</project.analyse.skip.maven-checkstyle-plugin>
-        <project.analyse.skip.maven-javadoc-plugin>${project.analyse.skip}</project.analyse.skip.maven-javadoc-plugin>
-        <project.analyse.skip.maven-pmd-plugin>${project.analyse.skip}</project.analyse.skip.maven-pmd-plugin>
-        <project.analyse.skip.maven-jxr-plugin>${project.analyse.skip}</project.analyse.skip.maven-jxr-plugin>
-        <project.analyse.skip.maven-project-info-reports-plugin>${project.analyse.skip}</project.analyse.skip.maven-project-info-reports-plugin>
-        <project.analyse.skip.maven-surefire-report-plugin>${project.analyse.skip}</project.analyse.skip.maven-surefire-report-plugin>
-        <project.analyse.skip.findbugs-maven-plugin>${project.analyse.skip}</project.analyse.skip.findbugs-maven-plugin>
+        <scmpublish.content>${project.build.directory}/staging/bootstrap-site-skin-parent/</scmpublish.content>
 
         <!-- Dependency Management -->
         <commons-io.version>2.11.0</commons-io.version>
@@ -81,317 +21,37 @@
         <org.slf4j.version>2.0.0-alpha7</org.slf4j.version>
     </properties>
 
+    <modules>
+        <module>mirror-common</module>
+        <module>mirror-processors-common</module>
+        <module>mirror-maven-common</module>
+        <module>mirror-processors-csv-ingest</module>
+        <module>mirror-processors-download-artifact</module>
+        <module>mirror-processors-generate-artifact</module>
+        <module>mirror-processors-manifest-maven</module>
+        <module>mirror-runnable-jar</module>
+    </modules>
+
     <developers>
         <developer>
             <name>Stephen Crocker</name>
             <email>stevecrox@hotmail.com</email>
-            <organization>Crox</organization>
+            <organization>Pallas Systems</organization>
             <roles>
                 <role>Developer</role>
             </roles>
         </developer>
     </developers>
     <organization>
-        <name>Crox</name>
+        <name>Pallas Systems</name>
     </organization>
 
     <scm>
         <connection>scm:git:https://github.com/stevecrox/maven_mirror_tool.git</connection>
         <developerConnection>scm:git:https://github.com/stevecrox/maven_mirror_tool.git</developerConnection>
         <url>https://github.com/stevecrox/maven_mirror_tool</url>
-      <tag>HEAD</tag>
-  </scm>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- ********************************************************************************************* Maven Core Plugins ********************************************************************************************* -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <source>${project.build.sourceVersion}</source>
-                        <target>${project.build.targetVersion}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <!-- Added so CI's like Jenkins can scan the console for warnings. -->
-                        <showDeprecation>true</showDeprecation>
-                        <showWarnings>true</showWarnings>
-                        <!-- Added to stop the compiler from including build artifacts/project data. -->
-                        <excludes>
-                            <exclude>**/bin/**/*.*</exclude>
-                            <exclude>**/.settings/**/*.*</exclude>
-                            <exclude>**/target/**/*.*</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <source>${project.build.sourceVersion}</source>
-                        <target>${project.build.targetVersion}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <!-- Added so CI's like Jenkins can scan the console for warnings. -->
-                        <showDeprecation>true</showDeprecation>
-                        <showWarnings>true</showWarnings>
-                        <!-- Added to stop the compiler from including build artifacts/project data. -->
-                        <excludes>
-                            <exclude>**/bin/**/*.*</exclude>
-                            <exclude>**/.settings/**/*.*</exclude>
-                            <exclude>**/target/**/*.*</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>${maven-clean-plugin.version}</version>
-                    <configuration>
-                        <!-- Set to improve performance. -->
-                        <followSymLinks>true</followSymLinks>
-                    </configuration>
-                </plugin>
-                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                    <configuration>
-                        <forkCount>1.5C</forkCount>
-                        <forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds>
-                        <reuseForks>false</reuseForks>
-                        <includes>
-                            <include>**/*IntegrationTest*</include>
-                            <include>**/*TestIntegration*</include>
-                        </includes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                    <configuration>
-                        <forkCount>1.5C</forkCount>
-                        <forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds>
-                        <reuseForks>false</reuseForks>
-                        <excludes>
-                            <exclude>**/*Integration*</exclude>
-                        </excludes>
-                        <includes>
-                            <include>**/*Test*</include>
-                            <include>**/*Test*</include>
-                        </includes>
-                    </configuration>
-                </plugin>
-                <!-- ********************************************************************************************* Maven Packaing Plugins ********************************************************************************************* -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-jar-plugin.version}</version>
-                    <configuration>
-                        <skipIfEmpty>true</skipIfEmpty>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven-war-plugin.version}</version>
-                    <configuration>
-                        <!-- Matches the EAR default location. -->
-                        <warSourceDirectory>${project.basedir}/src/main/application</warSourceDirectory>
-                        <includeEmptyDirectories>true</includeEmptyDirectories>
-                        <webXml>${project.basedir}/src/main/application/WEB-INF/web.xml</webXml>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven-shade-plugin.version}</version>
-                    <configuration>
-                        <createDependencyReducedPom>true</createDependencyReducedPom>
-                        <createSourcesJar>true</createSourcesJar>
-                        <shadedArtifactAttached>true</shadedArtifactAttached>
-                        <shadeTestJar>true</shadeTestJar>
-                        <shadedClassifierName>shade</shadedClassifierName>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                    <configuration>
-                        <attach>true</attach>
-                        <includePom>true</includePom>
-                        <skipSource>${project.build.skip.maven-source-plugin}</skipSource>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
-                    <configuration>
-
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${maven-gpg-plugin.version}</version>
-                    <configuration>
-                        <gpgArguments>
-                            <arg>--pinentry-mode</arg>
-                            <arg>loopback</arg>
-                        </gpgArguments>
-                    </configuration>
-                </plugin>
-                <!-- ********************************************************************************************* Maven Analysis Plugins ********************************************************************************************* -->
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs-maven-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.findbugs-maven-plugin}</skip>
-                        <failOnError>${project.analyse.fail.on.error.findbugs-maven-plugin}</failOnError>
-                        <effort>Max</effort>
-                        <formats>
-                            <format>html</format>
-                            <format>xml</format>
-                        </formats>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-changelog-plugin</artifactId>
-                    <version>${maven-changelog-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.maven-changelog-plugin}</skip>
-                        <outputEncoding>${project.build.targetEncoding}</outputEncoding>
-                        <connectionType>developerConnection</connectionType>
-                        <scmUrl>${project.scm.developerConnection}</scmUrl>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.maven-javadoc-plugin}</skip>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <serialwarn>true</serialwarn>
-                        <source>${project.build.targetVersion}</source>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jxr-plugin</artifactId>
-                    <version>${maven-jxr-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.maven-jxr-plugin}</skip>
-                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-                        <outputEncoding>${project.build.targetEncoding}</outputEncoding>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>${maven-pmd-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.maven-pmd-plugin}</skip>
-                        <aggregate>true</aggregate>
-                        <format>xml</format>
-                        <minimumPriority>1</minimumPriority>
-                        <outputEncoding>${project.build.targetEncoding}</outputEncoding>
-                        <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-                        <targetJdk>${project.build.targetVersion}</targetJdk>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>${maven-project-info-reports-plugin.version}</version>
-                    <configuration>
-                        <skip>${project.analyse.skip.maven-project-info-reports-plugin}</skip>
-                        <anonymousConnection>${project.scm.connection}</anonymousConnection>
-                        <developerConnection>${project.scm.developerConnection}</developerConnection>
-                        <webAccessUrl>${project.scm.url}</webAccessUrl>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-report-plugin</artifactId>
-                    <version>${maven-surefire-report-plugin.version}</version>
-                    <configuration>
-                        <skipSurefireReport>${project.analyse.skip.maven-surefire-report-plugin}</skipSurefireReport>
-                        <aggregate>true</aggregate>
-                        <alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
-                    </configuration>
-                </plugin>
-                <!-- ********************************************************************************************* Maven Site Plugin ********************************************************************************************* -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven-site-plugin.version}</version>
-                    <configuration>
-                        <attach>true</attach>
-                        <chmod>true</chmod>
-                        <generateSitemap>true</generateSitemap>
-                        <generateProjectInfo>true</generateProjectInfo>
-                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-                        <outputEncoding>${project.build.targetEncoding}</outputEncoding>
-                        <pomPackagingOnly>false</pomPackagingOnly>
-                        <siteDirectory>${project.build.site.directory}</siteDirectory>
-                        <validate>false</validate>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <reporting>
-        <plugins>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-changelog-plugin</artifactId>
-                                <version>${maven-changelog-plugin.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-javadoc-plugin</artifactId>
-                                <version>${maven-javadoc-plugin.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-jxr-plugin</artifactId>
-                                <version>${maven-jxr-plugin.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-pmd-plugin</artifactId>
-                                <version>${maven-pmd-plugin.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-project-info-reports-plugin</artifactId>
-                                <version>${maven-project-info-reports-plugin.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-surefire-report-plugin</artifactId>
-                                <version>${maven-surefire-report-plugin.version}</version>
-                            </plugin>
-        </plugins>
-    </reporting>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -473,17 +133,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>main</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-    
     <profiles>
         <profile>
             <id>fast</id>
@@ -492,86 +141,5 @@
                 <project.build.skip.maven-surefire-plugin>true</project.build.skip.maven-surefire-plugin>
             </properties>
         </profile>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.nicoulaj.maven.plugins</groupId>
-                        <artifactId>checksum-maven-plugin</artifactId>
-                        <version>${checksum-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>source-release-checksum</id>
-                                <goals>
-                                    <goal>artifacts</goal>
-                                </goals>
-                                <phase>post-integration-test</phase>
-                                <configuration>
-                                    <algorithms>
-                                        <algorithm>SHA-512</algorithm>
-                                    </algorithms>
-                                    <includeClassifiers>source-release</includeClassifiers>
-                                    <excludeMainArtifact>true</excludeMainArtifact>
-                                    <csvSummary>false</csvSummary>
-                                    <attachChecksums>true</attachChecksums>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     </profiles>
-
-    <modules>
-        <module>mirror-common</module>
-        <module>mirror-processors-common</module>
-        <module>mirror-maven-common</module>
-        <module>mirror-processors-csv-ingest</module>
-        <module>mirror-processors-download-artifact</module>
-        <module>mirror-processors-generate-artifact</module>
-        <module>mirror-processors-manifest-maven</module>
-        <module>mirror-runnable-jar</module>
-
-    </modules>
 </project>
